@@ -1,0 +1,19 @@
+{
+  "name": "ucf-web-migrate",
+  "version": "0.0.1",
+  "description": "一个 CLI 工具，旨在帮助uba开发者用户快速将其工程迁移升级为 ucf-web 微前端框架。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iuap-design/ucf-web-migrate.git"
+  },
+  "author": "WangXiaoGang (wangxgk@yonyou.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iuap-design/ucf-web-migrate/issues"
+  },
+  "homepage": "https://github.com/iuap-design/ucf-web-migrate#readme"
+}
