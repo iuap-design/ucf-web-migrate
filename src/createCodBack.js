@@ -1,6 +1,12 @@
 var path = require("path");
 const fs_extra = require('fs-extra');
 
+/**
+ * 创建代码备份
+ * @param {string} dir  * 
+ * @author  Wanxiaogang(wangxgk@yonyou.com)
+ * @date   2019-02-26 01:18
+ */
 function createCodeBack(dir){
 
     let directorys = fs_extra.readdirSync(dir);
