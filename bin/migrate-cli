@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+
+var argv = require('minimist')(process.argv.slice(2));
+var commands = argv._;
+
+var path = require('path')
+__filename
+global
+var opts = {
+  cmd: commands,
+  argv: argv,
+  name: "migrate-cli"
+};
+
+
+require("../src")(opts);

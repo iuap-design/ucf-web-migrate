@@ -15,5 +15,15 @@
   "bugs": {
     "url": "https://github.com/iuap-design/ucf-web-migrate/issues"
   },
-  "homepage": "https://github.com/iuap-design/ucf-web-migrate#readme"
+  "homepage": "https://github.com/iuap-design/ucf-web-migrate#readme",
+  "devDependencies": {
+    "minimist": "^1.2.0"
+  },
+  "dependencies": {
+    "fs-extra": "^7.0.1",
+    "js-beautify": "^1.8.9",
+    "rimraf": "^2.6.3",
+    "string-format": "^2.0.0",
+    "template_js": "^0.7.1-1"
+  }
 }
