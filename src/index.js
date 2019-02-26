@@ -12,7 +12,17 @@ let demo = path.join(__dirname, '../test/demo');
 module.exports = (options) => {
     // console.log(options)
 
-    // createCodBack(testDir)
+    createCodBack(demo).then(()=>{
+        return createUcfCfg(demo)
+    }).then(()=>{
+        return createNewDir(demo)
+    }).catch(err=>{
+        console.log(err.stack);
+    })
     // createNewDir(demo)
-    createUcfCfg(testDir);
+    // createUcfCfg(testDir).then((status)=>{
+    //     debugger
+    // }).catch(err=>{
+    //     debugger
+    // });
 }
