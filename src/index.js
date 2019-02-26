@@ -11,8 +11,6 @@ let demoDir = 'D:/Develop/web/iuap_pap_react'
 let demo = path.join(__dirname, '../test/demo');
 module.exports = (options) => {
     // console.log(options)
-    testDir
-    path
 
     // createCodBack(testDir)
     // createNewDir(demo)

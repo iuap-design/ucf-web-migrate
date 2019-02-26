@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "fs-extra": "^7.0.1",
+    "glob": "^7.1.3",
     "js-beautify": "^1.8.9",
     "rimraf": "^2.6.3",
     "string-format": "^2.0.0",

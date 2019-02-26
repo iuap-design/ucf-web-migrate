@@ -12,7 +12,7 @@ module.exports = (env, argv) => {\n
             <%for(var i= 0; i < bootList.length; i++) {%>
             "<%:=bootList[i]%>",\n
             <%}%>
-        ],
+        ],\n
         <%:="// 代理的配置"%>\n
         proxy:<%:=proxy%>,\n
         <%:="// 构建资源的时候产出sourceMap，调试服务不会生效"%>\n
@@ -25,14 +25,14 @@ module.exports = (env, argv) => {\n
         global_env: {
             <%for(var key in global_env) {%>
             <%if(!global_env[key]) continue;%>
-            <%:=key+':path.resolve(__dirname, '+global_env[key] + '),'%>\n
+            <%:=key+':path.resolve(__dirname, '+ global_env[key] + '),'%>\n
             <%}%>
         },\n
         <%:="// 别名配置"%>\n
         <%:="//'ucf-apps': path.resolve(__dirname, 'ucf-apps/')"%>\n
         alias: {\n
             <%for(var key in alias) {%>
-            <%:=key+':path.resolve(__dirname, "'+alias[key] + '"),'%>\n
+            <%:=key+':path.resolve(__dirname, "ucf-common/'+alias[key] + '"),'%>\n
             <%}%>
         },\n
         <%:="// 构建排除指定包"%>\n
