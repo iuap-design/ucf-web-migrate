@@ -11,18 +11,14 @@ let demoDir = 'D:/Develop/web/iuap_pap_react'
 let demo = path.join(__dirname, '../test/demo');
 module.exports = (options) => {
     // console.log(options)
-
+    //创建备份目录
     createCodBack(demo).then(()=>{
+        //生成ucf.config.js 和 package.json
         return createUcfCfg(demo)
     }).then(()=>{
-        return createNewDir(demo)
+        //整理并生成ucf项目结构。
+        createNewDir(demo)
     }).catch(err=>{
         console.log(err.stack);
     })
-    // createNewDir(demo)
-    // createUcfCfg(testDir).then((status)=>{
-    //     debugger
-    // }).catch(err=>{
-    //     debugger
-    // });
 }

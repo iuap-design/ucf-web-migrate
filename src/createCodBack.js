@@ -24,10 +24,13 @@ function createCodeBack(dir){
             let directorys = fs_extra.readdirSync(path.join(dir));  
             directorys.forEach(element => {
                 if(element === 'node_modules' || element === '_back') return;
-                fs_extra.copySync(path.join(dir, element), path.join(dir, '_back', element), (src, dest) => {
-                    // your logic here
-                    // it will be copied if return true
-                });
+                fs_extra.copySync(path.join(dir, element), path.join(dir, '_back', element));
+
+                // , (src, dest) => {
+                //     debugger
+                //     // your logic here
+                //     // it will be copied if return true
+                // }
             });
             resolve(true);
         } catch (error) {
