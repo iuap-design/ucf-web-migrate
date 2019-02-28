@@ -1,4 +1,5 @@
 const path = require("path");
+const fs_extra = require('fs-extra');
 
 const createCodBack = require('./createCodBack.js');
 const createUcfCfg = require('./createUcfCfg.js');
@@ -12,13 +13,19 @@ let demo = path.join(__dirname, '../test/demo');
 module.exports = (options) => {
     // console.log(options)
     //创建备份目录
-    createCodBack(demo).then(()=>{
-        //生成ucf.config.js 和 package.json
-        return createUcfCfg(demo)
-    }).then(()=>{
-        //整理并生成ucf项目结构。
-        createNewDir(demo)
-    }).catch(err=>{
-        console.log(err.stack);
-    })
+    // createCodBack(demo).then(()=>{
+    //     //生成ucf.config.js 和 package.json
+    //  
+    
+    // return createUcfCfg(demo)
+    // }).then(()=>{
+    //     //整理并生成ucf项目结构。
+    //     createNewDir(demo)
+    // }).catch(err=>{
+    //     console.log(err.stack);
+    // })
+    createNewDir(demo)
+    // createUcfCfg(demo);
+
+
 }

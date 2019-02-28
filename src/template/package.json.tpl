@@ -11,7 +11,7 @@
     "ucf-scripts": "^1.0.7"
   },
   "dependencies": {
-            <%for(var key in dependencies) {%>
+            <%for(var key in dependencies){%>
             <%if(!dependencies[key]) continue;%>
             <%:=`"${key}":"${dependencies[key]}",`%>\n
             <%}%>
