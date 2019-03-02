@@ -9,6 +9,11 @@ import Routers from "<%=router%>";
 mirror.defaults({
     historyMode: "hash"
 });
-render( <Router>
-            <Routers />
-        </Router>, document.querySelector("#app"));
+
+render(React.createElement(Router, {
+    children: React.createElement(Routers, {
+        match: {
+            url:"/"
+        }
+    })
+}), document.querySelector("#app"));

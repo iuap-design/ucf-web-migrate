@@ -18,7 +18,7 @@ function createCodeBack(dir){
             if(!status){
                 // fs_extra.removeSync(path.join(dir, '_back')); 
                 //不存在则创建 备份目录
-                fs_extra.mkdir( path.join(dir, '_back')); 
+                fs_extra.mkdirSync( path.join(dir, '_back')); 
             }
             //遍历项目目录复制所有文件到备份目录
             let directorys = fs_extra.readdirSync(path.join(dir));  

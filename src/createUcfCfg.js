@@ -26,12 +26,16 @@ function createUcfConfig(dir) {
         
 
             //这里后面要用在外部维护区分 modules 和 pages
-
-            let modules = fs_extra.readdirSync(path.join(dir, '/src/pages'));
+            let codePatch = 'pages';
+            let isSingle = fs_extra.existsSync(path.join(dir, '_back','src', 'modules'));
+            if(isSingle){
+                codePatch = 'modules';
+            }
+            let modules = fs_extra.readdirSync(path.join(dir, 'src', codePatch));
 
             //排除非文件夹目录
             let bootList = modules.filter(item => {
-                let status = fs_extra.statSync(path.join(dir, '/src/pages', item));
+                let status = fs_extra.statSync(path.join(dir, 'src', codePatch, item));
                 return status.isDirectory()
             });
 

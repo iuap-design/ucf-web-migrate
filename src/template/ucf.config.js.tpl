@@ -26,7 +26,7 @@ module.exports = (env, argv) => {\n
         global_env: {
             <%for(var key in global_env) {%>
             <%if(!global_env[key]) continue;%>
-            <%:=key+':path.resolve(__dirname, '+ global_env[key] + '),'%>\n
+            <%:=key+': '+ global_env[key] + ','%>\n
             <%}%>
         },\n
         <%:="// 别名配置"%>\n
