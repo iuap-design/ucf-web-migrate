@@ -9,7 +9,8 @@
             "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceFolder}\\bin\\migrate-cli",
-            "args": ["init"]
+            "args": ["init"],
+            "outFiles": []
         }
     ]
 }
