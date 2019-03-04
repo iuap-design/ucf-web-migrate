@@ -42,13 +42,13 @@ function delOldFile(dir){
         "ucf-apps",
         "ucf-common"
     ];
-
+    console.log('开始删除多余目录')
     let delTask = fileList.map(item => {
         if(!~unDelList.indexOf(item)){
             rimrafSync(path.join(dir,item));
         }
     }); 
-
+    
     return new Promise((resolve, reject) =>{
         Promise.all(delTask).then((arr)=>{
             resolve(arr)
