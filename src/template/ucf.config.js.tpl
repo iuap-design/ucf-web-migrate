@@ -26,7 +26,7 @@ module.exports = (env, argv) => {\n
         global_env: {
             <%for(var key in global_env) {%>
             <%if(!global_env[key]) continue;%>
-            <%:=key+': '+ global_env[key] + ','%>\n
+            <%:=key+': JSON.stringify('+ global_env[key] + '),'%>\n
             <%}%>
         },\n
         <%:="// 别名配置"%>\n
@@ -35,6 +35,7 @@ module.exports = (env, argv) => {\n
             <%for(var key in alias) {%>
             <%:=key+':path.resolve(__dirname, "ucf-common/'+alias[key] + '"),'%>\n
             <%}%>
+            "ucf-common": path.resolve(__dirname, "ucf-common/")
         },\n
         <%:="// 构建排除指定包"%>\n
         externals: {},\n

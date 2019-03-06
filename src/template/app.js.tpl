@@ -5,7 +5,7 @@
 import React from 'react';
 import mirror, { render, Router } from 'mirrorx';
 import Routers from "<%=router%>";
-
+import 'ucf-common/app.less';
 mirror.defaults({
     historyMode: "hash"
 });

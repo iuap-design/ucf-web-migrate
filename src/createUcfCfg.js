@@ -31,11 +31,11 @@ function createUcfConfig(dir) {
             if(isSingle){
                 codePatch = 'modules';
             }
-            let modules = fs_extra.readdirSync(path.join(dir, 'src', codePatch));
+            let modules = fs_extra.readdirSync(path.join(dir, '_back','src', codePatch));
 
             //排除非文件夹目录
             let bootList = modules.filter(item => {
-                let status = fs_extra.statSync(path.join(dir, 'src', codePatch, item));
+                let status = fs_extra.statSync(path.join(dir, '_back', 'src', codePatch, item));
                 return status.isDirectory()
             });
 
@@ -80,7 +80,7 @@ function createUcfConfig(dir) {
             //读取项目原本的 package.json
             let packageJSON = fs_extra.readJSONSync(path.join(dir, '/package.json'));
             //将项目中的 dependencies 配置和上面的ucf默认的 dependencies 配置合并
-            packageJSON.dependencies = Object.assign(packageJSON.dependencies, dependencies);
+            packageJSON.dependencies = JSON.stringify(Object.assign(packageJSON.dependencies, dependencies));
 
             //读取 package.tpl 模板文件
             let packageTpl = fs_extra.readFileSync(path.join(__dirname, 'template/package.json.tpl'), 'utf8');

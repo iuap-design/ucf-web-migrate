@@ -4,6 +4,10 @@ const fs_extra = require('fs-extra');
 const createCodBack = require('./createCodBack.js');
 const createUcfCfg = require('./createUcfCfg.js');
 const createNewDir = require('./createNewDir.js');
+const chalk = require('chalk');
+var log = require('single-line-log').stdout;
+
+
 // 
 let testDir = path.join('D:\\cli-test\\demo1');
 
@@ -17,6 +21,14 @@ module.exports = (options) => {
     let filePath = process.cwd();
     // console.log(options);
     let cmd = options.cmd[0];
+
+    log(chalk.blue.bold('Hello world!111111111'));
+    // log.clear();
+    console.log('\nline')
+    setTimeout(() => {
+        log(chalk.blue.bold('Hello world!333333333333'));
+    }, 1000)
+    return ;
     switch (cmd) {
         case 'init':
             //创建备份目录
