@@ -6,6 +6,7 @@ const path = require("path");
 const template = require('template_js');
 
 const beautify = require('js-beautify');
+const {logError, logInfo, logWarning, ProgressBar, log}= require('./utils.js');
 
 const { html: beautify_html, js: beautify_js } = beautify;
 
@@ -34,7 +35,7 @@ function delOldFile(dir){
         "LICENSE",
         "README.md",
         "docs",
-        "node_modules",
+        // "node_modules",
         "ucf.config.js",
         "package.json",
         ".gitignore",
@@ -42,7 +43,6 @@ function delOldFile(dir){
         "ucf-apps",
         "ucf-common"
     ];
-    console.log('开始删除多余目录')
     let delTask = fileList.map(item => {
         if(!~unDelList.indexOf(item)){
             rimrafSync(path.join(dir,item));
@@ -68,11 +68,15 @@ const createDir = (dir) =>{
 //复制目录下除过 modules 和 pages 外的所有文件
 const copyFiles = (dir, toDir) =>{
     let fileList = fs_extra.readdirSync(path.join(dir));
-    fileList.forEach(item => {
+    let progressBar = new ProgressBar('');
+    let total = fileList.length;
+    fileList.forEach((item, index) => {
         if(item !== "modules" || item !== "pages"){
             fs_extra.copySync(path.join(dir, item), path.join(toDir, item));
+            progressBar.render({ completed: index, total: total, status: `\n 正在复制：${path.join(dir, item)}` });
         }
     });
+    logInfo('复制完成').break();
 }
 //处理pages类型的目录
 const fixPages = (dir) => {
@@ -166,12 +170,16 @@ const fixMudoles = (dir) => {
 }
 function createNewDir (dir) {
 
-
+    
+    logInfo('创建 ucf-common 目录').break();
     //检查并创建 ucf-common 目录。
     createDir(path.join(dir, 'ucf-common'));
+    
+    logInfo(`复制公共组件到ucf-common/src`).break();
     //复制目录下除过 modules 和 pages 外的所有文件
     copyFiles(path.join(dir, '_back','src'), path.join(dir, 'ucf-common/src'))
 
+    logInfo('创建 ucf-apps 目录').break();
     //检查并创建 ucf-apps 目录。
     createDir(path.join(dir, 'ucf-apps'));
 
@@ -183,7 +191,7 @@ function createNewDir (dir) {
         //多页处理
         fixPages(dir);
     }
-    
+    logInfo('删除多余代码').break();
     return delOldFile(dir);
 
 }

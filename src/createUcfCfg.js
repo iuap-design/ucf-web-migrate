@@ -1,9 +1,9 @@
-const string_format = require('string-format')
 const path = require("path");
 const fs_extra = require('fs-extra');
 const beautify_js = require('js-beautify').js;
 const template = require('template_js');
 
+const {logError, logInfo, logWarning, ProgressBar}= require('./utils.js');
 
 /**
  * 修改原uba.config.js 和 package.json 创建 ucf.config.js 和 对应新的 package.json
@@ -17,7 +17,14 @@ function createUcfConfig(dir) {
     return new Promise((resolve, reject) => {
         //直接在项目下读取 uba.config.js 返回的结果
         try {
+            logInfo('读取uba.config.js').break();
+            let ubaConfigFile = fs_extra.existsSync(path.join(dir, '/uba.config.js'));
+            if(!ubaConfigFile){
+                logError('不存在 uba.config.js 请检查原项目结构').break();
+                reject(new Error('不存在 uba.config.js 请检查原项目结构'));
+            }
             let ubaConfig = require(path.join(dir, '/uba.config.js')); 
+
             let {
                 proxyConfig,
                 devConfig,
@@ -57,6 +64,7 @@ function createUcfConfig(dir) {
                 global_env: devConfig.plugins[2].definitions,
                 externals: JSON.stringify(externals)
             });
+            logInfo('生成 ucf.config.js ').break();
             //创建 ucf.config.js 文件写入生成的js代码，同时格式化文件
             fs_extra.outputFileSync(path.join(dir, '/ucf.config.js'),
                 beautify_js(ucfConfigJSONFileString, {
@@ -77,6 +85,11 @@ function createUcfConfig(dir) {
                 "ucf-fe": "^0.1.0",
                 "ucf-request": "^1.0.0"
             };
+
+            if(!fs_extra.existsSync(path.join(dir, '/package.json'))){
+                logError('不存在 package.json 请检查原项目结构').break();
+                reject(new Error('不存在 package.json 请检查原项目结构'));
+            }
             //读取项目原本的 package.json
             let packageJSON = fs_extra.readJSONSync(path.join(dir, '/package.json'));
             //将项目中的 dependencies 配置和上面的ucf默认的 dependencies 配置合并
@@ -88,11 +101,14 @@ function createUcfConfig(dir) {
             //生成新的 package 配置
             let packageJSONFileString = template(packageTpl, packageJSON);
 
+
+            logInfo('生成 package.json').break();
             //生成新的 package.json 文件，写入刚生成的 package 配置，同时格式化文本
             fs_extra.outputFileSync(path.join(dir, './package.json'), beautify_js(packageJSONFileString, {
                 indent_size: 4,
                 space_in_empty_paren: true
             }));
+            
             resolve(true);
         } catch (error) {
             reject(error)  

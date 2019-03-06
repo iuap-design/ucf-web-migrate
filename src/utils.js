@@ -3,36 +3,35 @@ const chalk = require('chalk');
 var log = require('single-line-log').stdout;
 const strformat = require('string-format');
 
-// log(chalk.blue.bold('Hello world!111111111'));
-//     // log.clear();
-// console.log('\nline')
-// setTimeout(() => {
-//     log(`${chalk.white.bgGreen.bold('INFO')}:${chalk.whiteBright.bold('Hello world!333333333333')}`);
-// }, 1000)
+//增加断行方法
+log.break = () => {
+    console.log('')
+}
 
 
-const infoText = (text) => {
+exports.log = log;
+exports.infoText = (text) => {
     return `${chalk.white.bgGreen.bold('INFO')}:${chalk.white(text)}`
 }
-const errText = (text) => {
-    return `${chalk.white.bgRed.bold('ERROR')}:${chalk.red(text)}`
+exports.errorText = (text) => {
+    return `${chalk.red.bold('ERROR')}:${chalk.red(text)}`
+}
+exports.warningText = (text) => {
+    return `${chalk.yellow.bold('Warning')}:${chalk.yellow(text)}`
+}
+exports.logInfo = ( text ) => {
+    this.log(this.infoText(text));
+    return this.log;
+}
+exports.logError = ( text ) => {
+    this.log(this.errorText(text));
+    return this.log;
+}
+exports.logWarning = ( text ) => {
+    this.log(this.warningText(text));
+    return this.log;
 }
 
-const logInfo = ( text ) => {
-    
-    log(infoText(text));
-}
-
-
-log(errText('dddddddd\n'))
-console.log('')
-
-log(infoText('dddddddd\n'))
-console.log('')
-logInfo('dddddddddddddddddddddddddd\n')
-
-
-log.clear();
 
 
 /**
@@ -66,6 +65,14 @@ function ProgressBar(description = 'PROGRESS', bar_length = 28) {
          * 使用cli-color进行包装美化。
          */
         this.description = chalk.blue.bold(this.description);
+
+        if( percent < 33 ){
+            cell = chalk.red.bgBlack.bold(cell);
+        }else if( percent < 66 ){
+            cell = chalk.yellow.bgBlack.bold(cell);
+        }else{
+            cell = chalk.green.bgBlack.bold(cell);
+        }
         cell = chalk.green.bgBlack.bold(cell);
         opts.completed = chalk.yellow.bold(opts.completed);
         opts.total = chalk.blue.bold(opts.total);
@@ -76,9 +83,10 @@ function ProgressBar(description = 'PROGRESS', bar_length = 28) {
         var cmdtext = strformat("<{0}:{1}%> {2}{3}  [completed: {4} totle:{5} `{6}`]", this.description, percent,
             cell, empty, opts.completed, opts.total, opts.status);
         log(cmdtext);
+        return log;
     };
 }
+exports.ProgressBar = ProgressBar;
 
-let a = new ProgressBar('删除');
-a.render({ completed: 50, total: 100, status: 'deleteing' })
-// exports = ProgressBar;
+
+module.exports = exports;
