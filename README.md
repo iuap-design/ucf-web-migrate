@@ -7,7 +7,7 @@ $ npm i ucf-web-migrate  -g
 # 进入到原基于uba的工程跟目录下执行 migrate 
 $ cd xx && migrate init
 
-# 迁移完成后安装行的 node_modules 依赖环境
+# 迁移完成后安装新的 node_modules 依赖环境
 npm i
 ```
 

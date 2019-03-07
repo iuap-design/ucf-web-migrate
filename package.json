@@ -1,6 +1,6 @@
 {
   "name": "ucf-web-migrate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "一个 CLI 工具，旨在帮助uba开发者用户快速将其工程迁移升级为 ucf-web 微前端框架。",
   "main": "src/index.js",
   "bin": {
