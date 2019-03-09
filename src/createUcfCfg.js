@@ -17,7 +17,7 @@ function createUcfConfig(dir) {
     return new Promise((resolve, reject) => {
         //直接在项目下读取 uba.config.js 返回的结果
         try {
-            logInfo('读取uba.config.js').break();
+            logInfo('读取 uba.config.js').break();
             let ubaConfigFile = fs_extra.existsSync(path.join(dir, '/uba.config.js'));
             if(!ubaConfigFile){
                 logError('不存在 uba.config.js 请检查原项目结构').break();

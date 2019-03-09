@@ -11,13 +11,13 @@ log.break = () => {
 
 exports.log = log;
 exports.infoText = (text) => {
-    return `${chalk.white.bgGreen.bold('INFO')}:${chalk.white(text)}`
+    return chalk.green.bold(`[提示] : ${text}`)
 }
 exports.errorText = (text) => {
-    return `${chalk.red.bold('ERROR')}:${chalk.red(text)}`
+    return chalk.red.bold(`[错误] : ${text}`)
 }
 exports.warningText = (text) => {
-    return `${chalk.yellow.bold('Warning')}:${chalk.yellow(text)}`
+    return chalk.yellow.bold(`[警告] : ${text}`)
 }
 exports.logInfo = ( text ) => {
     this.log(this.infoText(text));
@@ -83,7 +83,6 @@ function ProgressBar(description = 'PROGRESS', bar_length = 28) {
         var cmdtext = strformat("<{0}:{1}%> {2}{3}  [completed: {4} totle:{5} `{6}`]", this.description, percent,
             cell, empty, opts.completed, opts.total, opts.status);
         log(cmdtext);
-        return log;
     };
 }
 exports.ProgressBar = ProgressBar;

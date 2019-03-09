@@ -31,7 +31,7 @@ function createCodeBack(dir){
                 let filePath = path.join(dir, element);
                 
                 fs_extra.copySync(filePath, path.join(dir, '_back', element));
-                progressBar.render({ completed: index, total: total, status: `\n 正在复制：${filePath}` });
+                progressBar.render({ completed: index, total: total,completed: index + 1, status: `\n 正在复制：${filePath}` });
                 // , (src, dest) => {
                 //     debugger
                 //     // your logic here

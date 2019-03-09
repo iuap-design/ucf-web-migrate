@@ -68,12 +68,9 @@ const createDir = (dir) =>{
 //复制目录下除过 modules 和 pages 外的所有文件
 const copyFiles = (dir, toDir) =>{
     let fileList = fs_extra.readdirSync(path.join(dir));
-    let progressBar = new ProgressBar('');
-    let total = fileList.length;
     fileList.forEach((item, index) => {
         if(item !== "modules" || item !== "pages"){
             fs_extra.copySync(path.join(dir, item), path.join(toDir, item));
-            progressBar.render({ completed: index, total: total, status: `\n 正在复制：${path.join(dir, item)}` });
         }
     });
     logInfo('复制完成').break();

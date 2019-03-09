@@ -1,6 +1,6 @@
 const path = require("path");
 const fs_extra = require('fs-extra');
-
+const chalk = require('chalk')
 const createCodBack = require('./createCodBack.js');
 const createUcfCfg = require('./createUcfCfg.js');
 const createNewDir = require('./createNewDir.js');
@@ -12,6 +12,8 @@ module.exports = (options) => {
     let filePath = process.cwd();
     // console.log(options);
     let cmd = options.cmd[0];
+    
+    console.log(chalk.cyan(`[提示] : 迁移过程依赖原项目的node_modules，请确保依赖环境存在。`));
     switch (cmd) {
         case 'init':
             //创建备份目录
@@ -27,6 +29,7 @@ module.exports = (options) => {
                 createNewDir(filePath);
             }).then(() =>{
                 logInfo('目录创建完成').break();
+                console.log(chalk.cyan(`[提示] : npm install && npm start`));
             }).catch(err=>{
                 logError(err.stack || err).break();;
             })

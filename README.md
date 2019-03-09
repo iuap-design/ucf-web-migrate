@@ -15,5 +15,4 @@ npm i
 
 工具在迁移是依赖原项目的 node__modules 环境，所以要先安装原来的项目依赖，安装过程中会生成备份目录（_back）,并迁移所有的源代码，同时适配 原uba脚手架搭建的单页和多页项目。
 
-
 其他资料参考[ucf-web开发说明](https://www.yuque.com/ucf-web/book)
