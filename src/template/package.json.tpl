@@ -8,7 +8,7 @@
     "build": "ucf-scripts build"
   },
   "devDependencies": {
-    "ucf-scripts": "^1.1.0"
+    "ucf-scripts": "^1.1.1"
   },
   "dependencies": <%:=dependencies%>
 }
