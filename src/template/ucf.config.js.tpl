@@ -29,6 +29,8 @@ module.exports = (env, argv) => {\n
             <%:=key+': JSON.stringify('+ global_env[key] + '),'%>\n
             <%}%>
         },\n
+        <%:="// 静态资源路径"%>\n
+        static: 'ucf-common/src/static',
         <%:="// 别名配置"%>\n
         <%:="//'ucf-apps': path.resolve(__dirname, 'ucf-apps/')"%>\n
         alias: {\n

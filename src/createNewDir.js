@@ -13,8 +13,8 @@ const { html: beautify_html, js: beautify_js } = beautify;
 //
 const rimrafSync = (filePath) => {
     return new Promise((resolve, reject) => {
-        rimraf(path.join(filePath), {}, function (er) {
-            if (er) {
+        rimraf(path.join(filePath), {}, function (err) {
+            if (err) {
                 reject(err) ;
             }else{
                 resolve(filePath);
