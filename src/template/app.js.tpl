@@ -5,6 +5,7 @@
 import React from 'react';
 import mirror, { render, Router } from 'mirrorx';
 import Routers from "<%=router%>";
+import 'tinper-bee/assets/tinper-bee.css'
 import 'ucf-common/src/app.less';
 mirror.defaults({
     historyMode: "hash"

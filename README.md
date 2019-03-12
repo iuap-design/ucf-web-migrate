@@ -19,4 +19,5 @@ npm i
 
 ## 版本
 
+- `1.1.1` 全局引入 tinper-bee/assets/tinper-bee.css
 - `1.1.0` 适配 ucf-scripts 1.1.0, 添加引用全局样式，其他bug修复
