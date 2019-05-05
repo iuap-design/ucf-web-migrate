@@ -35,7 +35,7 @@ function delOldFile(dir){
         "LICENSE",
         "README.md",
         "docs",
-        // "node_modules",
+        "node_modules",
         "ucf.config.js",
         "package.json",
         ".gitignore",
@@ -69,7 +69,7 @@ const createDir = (dir) =>{
 const copyFiles = (dir, toDir) =>{
     let fileList = fs_extra.readdirSync(path.join(dir));
     fileList.forEach((item, index) => {
-        if(item !== "modules" || item !== "pages"){
+        if(item !== "modules" && item !== "pages"){
             fs_extra.copySync(path.join(dir, item), path.join(toDir, item));
         }
     });
@@ -118,6 +118,9 @@ const fixPages = (dir) => {
                 indent_size: 4,
                 space_in_empty_paren: true
             }));
+            if(fs_extra.existsSync(path.join(newCodePath, item, 'src/app.jsx'))){
+                fs_extra.removeSync(path.join(newCodePath, item, 'src/app.jsx'))
+            }
         }
     });
 

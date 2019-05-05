@@ -24,11 +24,9 @@ function createUcfConfig(dir) {
                 reject(new Error('不存在 uba.config.js 请检查原项目结构'));
             }
             let ubaConfig = require(path.join(dir, '/uba.config.js')); 
-
             let {
                 proxyConfig,
-                devConfig,
-                externals
+                devConfig
             } = ubaConfig;
         
 
@@ -56,12 +54,17 @@ function createUcfConfig(dir) {
             //读取 ucf.config.tpl 模板文件
             let ucfConfigTpl = fs_extra.readFileSync(path.join(__dirname, 'template/ucf.config.js.tpl'), 'utf8');
 
+            let definitions = {};
+            let {plugins = [], externals = '{}'} = devConfig;
+            definitions = plugins.find((item) => {
+                return Boolean(item.definitions)
+            }) 
             //生成配置代码
             let ucfConfigJSONFileString = template(ucfConfigTpl, {
                 bootList: bootList,
                 proxy: JSON.stringify(proxyConfig),
                 alias: devConfig.resolve.alias,
-                global_env: devConfig.plugins[2].definitions,
+                global_env: definitions.definitions || {},
                 externals: JSON.stringify(externals)
             });
             logInfo('生成 ucf.config.js ').break();

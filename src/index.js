@@ -14,6 +14,8 @@ module.exports = (options) => {
     // console.log(options);
     let cmd = options.cmd[0];
 
+    // filePath = 'D:/Develop/web/ucf-web-migrate/test/demo_modules'
+
     const rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout
@@ -24,7 +26,7 @@ module.exports = (options) => {
     switch (cmd) {
         case 'init':
             //创建备份目录
-            rl.question(chalk.cyan(`[提示] : 迁移过程依赖原项目的node_modules，请确保依赖环境存在，是否继续？(Y/N)\n`), (answer) => {
+            rl.question(chalk.cyan(`[提示] : 迁移过程依赖原项目的node_modules，请确保依赖环境存在，是否继续？(Y/N)`), (answer) => {
                 if(answer.toLowerCase(answer) !== 'y'){
                     process.exit();
                     return;
@@ -40,9 +42,9 @@ module.exports = (options) => {
                     createNewDir(filePath);
                 }).then(() =>{
                     logInfo('目录创建完成').break();
-                    console.log(chalk.cyan(`[提示] : 项目迁移完成，请执行 npm install && npm start`));
+                    console.log(chalk.cyan(`[提示] : 项目迁移完成，正在删除多余文件，请稍后执行 npm install && npm start`));
                     
-                    process.exit();
+                    // process.exit();
                 }).catch(err=>{
                     
                     logError(err.stack || err).break();;

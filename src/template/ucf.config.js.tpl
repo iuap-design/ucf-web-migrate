@@ -40,7 +40,7 @@ module.exports = (env, argv) => {\n
             "ucf-common": path.resolve(__dirname, "ucf-common/")
         },\n
         <%:="// 构建排除指定包"%>\n
-        externals: {},\n
+        externals: <%:=externals%>,\n
         <%:="// 加载器Loader"%>\n
         loader: [],\n
         <%:="// 调试服务需要运行的插件"%>\n
