@@ -1,7 +1,7 @@
 const path = require("path");
 const fs_extra = require('fs-extra');
 const chalk = require('chalk')
-const createCodBack = require('./createCodBack.js');
+const createCodeBack = require('./createCodeBack.js');
 const createUcfCfg = require('./createUcfCfg.js');
 const createNewDir = require('./createNewDir.js');
 
@@ -19,7 +19,7 @@ module.exports = (options) => {
             //创建备份目录
             
             logInfo('创建备份')
-            createCodBack(filePath).then(()=>{
+            createCodeBack(filePath).then(()=>{
                 logInfo('备份创建完成').break();
                 //生成ucf.config.js 和 package.json
                 return createUcfCfg(filePath)
